@@ -34,20 +34,18 @@ function getUserData () {
     while (length < 8 || length > 128) {
         length = prompt("Enter desired password length (must be between 8 - 128): ")
     }
-    characterType(special);
-    characterType(numeric);
-    characterType(lowercase);
-    characterType(uppercase);
+    characterType("special", special);
+    characterType("numeric", numeric);
+    characterType("lowercase", lowercase);
+    characterType("uppercase", uppercase);
     if (validate < 1) {
         getUserData();
     }
 }
 
 // validate user input matches y/n criteria
-function characterType (type) {
-    while (type != "y" || type != "n") {
-        type = prompt("Include " + type + " characters? (y/n) ");
-    }
+function characterType (typeName, type ) {
+    type = prompt("Include " + typeName + " characters? (y/n) ");
     if (type == "y") {
         type = true;
         validate++
