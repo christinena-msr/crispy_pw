@@ -4,10 +4,17 @@ body {
     margin: auto;
 }
 
-header {
-    background-color: lightpink;
+.header {
+    background-color: seagreen;
     color: white;
-    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
+
+.container {
+    margin: 1em;
 }
 
 #password {
@@ -25,5 +32,5 @@ button {
     display: inline-block;
     margin: 1em;
     padding: 1em;
-    align-content: ;
+    background-color: #cccccc;
 }
