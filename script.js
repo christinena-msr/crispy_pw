@@ -13,28 +13,28 @@ var copyButton = document.querySelectorAll("button")[1];
 
 var upperArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowerArray = upperArray.toLowerCase();
+var charArray = " !\"#$%&\'()*+-./:;<=>?@[\\]^_`{|}~";
+var numArray = "0123456789";
+var specArray = [charArray, numArray, lowerArray, upperArray];
 console.log(upperArray);
 console.log(lowerArray);
-var charArray = " !\"#$%&\'()*+-./:;<=>?@[\\]^_`{|}~";
 console.log(charArray);
-var numArray = "0123456789";
 console.log(numArray);
 
-var pwlength = 0;
 var special = false;
 var numeric = false;
 var lowercase = false;
 var uppercase = false;
 var reqArray = ["special", "numeric", "lowercase", "uppercase"];
 var boolArray = [special, numeric, lowercase, uppercase];
-var specArray = [charArray, numArray, lowerArray, upperArray];
+
 var pass = "";
 var charString = "";
 
 // prompt user for password specs
 function generatePassword () {
-    pwlength = prompt("Enter desired password length (must be between 8 - 128): ");
-    if (pwlength >= 8 || pwlength <=128) {
+    var pwlength = prompt("Enter desired password length (must be between 8 - 128): ");
+    if (pwlength >= 8 && pwlength <=128) {
         console.log(pwlength);
         boolArray = characterType(reqArray, boolArray);
         console.log(boolArray);
@@ -60,6 +60,7 @@ function generatePassword () {
         console.log(pass);
         password.textContent = pass;
     } else {
+        alert("Password length must be between 8 - 128 characters.");
         generatePassword();
     }
 }
