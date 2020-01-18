@@ -5,8 +5,8 @@ body {
 }
 
 .header {
-    background-color: seagreen;
-    color: white;
+    background-color: peachpuff;
+    color: saddlebrown;
     margin-top: 0;
     margin-bottom: 0;
     padding-top: 0.3em;
@@ -14,6 +14,7 @@ body {
 }
 
 .container {
+    font-family: Arial, Helvetica, sans-serif;
     margin: 1em;
 }
 
