@@ -1,2 +1,4 @@
 # crispy_pw
-random password generator
+Random password generator.
+This website will generate a random password that satisfied the user's specifications.
+

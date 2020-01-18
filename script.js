@@ -7,73 +7,88 @@
 //  Uppercase characters
 // The application should validate user input and ensure that at least one character type is selected.
 
-var password = document.querySelector("password");
-var genButton = document.querySelector("generate");
-var copyButton = document.querySelector("copy");
+var password = document.querySelectorAll("textarea")[0];
+var genButton = document.querySelectorAll("button")[0];
+var copyButton = document.querySelectorAll("button")[1];
 
 var upperArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-upperArray = upperArray.split("");
+var lowerArray = upperArray.toLowerCase();
 console.log(upperArray);
-var lowerArray = upperArray.toLowerCase;
+console.log(lowerArray);
 var charArray = " !\"#$%&\'()*+-./:;<=>?@[\\]^_`{|}~";
-charArray = charArray.split("");
 console.log(charArray);
 var numArray = "0123456789";
-numArray = numArray.split("");
 console.log(numArray);
 
-var length = 0;
+var pwlength = 0;
 var special = false;
 var numeric = false;
 var lowercase = false;
 var uppercase = false;
-var validate = 0;
+var reqArray = ["special", "numeric", "lowercase", "uppercase"];
+var boolArray = [special, numeric, lowercase, uppercase];
+var specArray = [charArray, numArray, lowerArray, upperArray];
+var pass = "";
+var charString = "";
 
 // prompt user for password specs
-function getUserData () {
-    while (length < 8 || length > 128) {
-        length = prompt("Enter desired password length (must be between 8 - 128): ")
-    }
-    characterType("special", special);
-    characterType("numeric", numeric);
-    characterType("lowercase", lowercase);
-    characterType("uppercase", uppercase);
-    if (validate < 1) {
-        getUserData();
+function generatePassword () {
+    pwlength = prompt("Enter desired password length (must be between 8 - 128): ");
+    if (pwlength >= 8 || pwlength <=128) {
+        console.log(pwlength);
+        boolArray = characterType(reqArray, boolArray);
+        console.log(boolArray);
+        let validate = 0;
+        for (let i=0; i<boolArray.length; i++) {
+            if (boolArray[i]) {
+                validate++;
+            }
+        }
+        if (validate == 0) {
+            boolArray = characterType(reqArray, boolArray);
+        }
+        for (let i=0; i<boolArray.length; i++) {
+            if(boolArray[i]) {
+                charString += specArray[i];
+                console.log(charString);
+            }
+        }
+        console.log(specArray);
+        for (let i = 0; i < pwlength; i++) {
+            pass += charString[Math.floor(Math.random() * Math.floor(charString.length))];
+        }
+        console.log(pass);
+        password.textContent = pass;
+    } else {
+        generatePassword();
     }
 }
 
 // validate user input matches y/n criteria
-function characterType (typeName, type ) {
-    type = prompt("Include " + typeName + " characters? (y/n) ");
-    if (type == "y") {
-        type = true;
-        validate++
-    } else if (type == "n") {
-        type = false;
+function characterType (typeArr, typeBool) {
+    //type is a boolean
+    let num = 0;
+    for (let i=0; i<typeBool.length; i++) {
+        let type = prompt("Include " + typeArr[i] + " characters? (enter y or n)");
+        if (type == "y") {
+            typeBool[i] = true;
+            num++;
+            console.log(typeBool[i]);
+        } else if (type == "n") {
+            typeBool[i] = false;
+            console.log(type);
+        }
     }
+    if (num == 0) {    
+        alert("You must include at least one type of character.");   
+        characterType(typeArr, typeBool);
+    }
+    return typeBool;
 }
 
-function generatePassword() {
-    let index = 0;
-    let passArray;
-    if (special) {
-        passArray += charArray;
-    }
-    if (numeric) {
-        passArray += numArray;
-    }
-    if (lowercase) {
-        passArray += lowerArray;
-    }
-    if (uppercase) {
-        passArray += upperArray;
-    }
-    console.log(passArray);
-    // while (password.textContent.length < length) {
-    //     var char = passArray[Math.random(passArray.length)];
-    //     password.textContent[i] = passArray[Math.random(passArray.length)][]
-    // }
-}
-getUserData();
+generatePassword();
 genButton.addEventListener("click", generatePassword);
+copyButton.addEventListener("click", function() {
+    password.select();
+    document.execCommand("copy");
+});
