@@ -33,6 +33,7 @@ var charString = "";
 
 // prompt user for password specs
 function generatePassword () {
+    password.textContent = "";
     var pwlength = prompt("Enter desired password length (must be between 8 - 128): ");
     if (pwlength >= 8 && pwlength <=128) {
         console.log(pwlength);
