@@ -60,10 +60,10 @@ function generatePassword () {
         }
         console.log(pass);
         password.textContent = pass;
-    } else {
+    } else if (pwlength != null){
         alert("Password length must be between 8 - 128 characters.");
         generatePassword();
-    }
+    } 
 }
 
 // validate user input matches y/n criteria
