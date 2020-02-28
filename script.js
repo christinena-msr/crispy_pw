@@ -60,8 +60,9 @@ function generatePassword () {
         }
         console.log(pass);
         password.textContent = pass;
-    } else if (pwlength < 8 || pwlength > 128){
-        alert("Password length must be between 8 - 128 characters.");
+    } else if (pwlength != null && pwlength < 8 || pwlength > 128){
+        alert(`You entered: ${pwlength}.
+Password length must be between 8 - 128 characters.`);
         generatePassword();
     } 
 }
