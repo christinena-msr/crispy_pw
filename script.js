@@ -89,7 +89,11 @@ function characterType (typeArr, typeBool) {
 }
 
 generatePassword();
-genButton.addEventListener("click", generatePassword);
+genButton.addEventListener("click", function() {
+    pass = "";
+    password.textContent = "";
+    generatePassword();
+});
 copyButton.addEventListener("click", function() {
     password.select();
     document.execCommand("copy");
